@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Men's Wellness Hub - Cancer & Mental Health Awareness</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #1a5276;
+            --secondary: #2e86c1;
+            --accent: #3498db;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --danger: #e74c3c;
+            --success: #27ae60;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            font-size: 2rem;
+            color: var(--accent);
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem;
+            border-radius: 4px;
+        }
+        
+        nav a:hover, nav a.active {
+            color: var(--accent);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Content Sections */
+        .section-title {
+            text-align: center;
+            margin: 3rem 0 2rem;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .card-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .card:hover .card-img img {
+            transform: scale(1.1);
+        }
+        
+        .card-content {
+            padding: 1.5rem;
+        }
+        
+        .card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Stats Section */
+        .stats {
+            background-color: var(--primary);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .stat-item {
+            padding: 1.5rem;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+        
+        /* Resources Section */
+        .resources {
+            padding: 3rem 0;
+        }
+        
+        .resource-list {
+            margin: 2rem 0;
+        }
+        
+        .resource-item {
+            background-color: white;
+            border-left: 5px solid var(--accent);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* About Section */
+        .about {
+            background-color: var(--light);
+            padding: 3rem 0;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .about-img {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .certification {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--accent);
+        }
+        
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1rem;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-section a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: var(--accent);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Page Specific Styles */
+        .page {
+            display: none;
+            padding: 2rem 0;
+            min-height: 60vh;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            
+            nav ul {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: var(--primary);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: left 0.3s;
+            }
+            
+            nav ul.active {
+                left: 0;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-heartbeat"></i>
+                <h1>Men's Wellness Hub</h1>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="#" class="nav-link active" data-page="home">Home</a></li>
+                    <li><a href="#" class="nav-link" data-page="cancer">Cancer Awareness</a></li>
+                    <li><a href="#" class="nav-link" data-page="mental">Mental Wellness</a></li>
+                    <li><a href="#" class="nav-link" data-page="resources">Resources</a></li>
+                    <li><a href="#" class="nav-link" data-page="about">About Me</a></li>
+                    <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <section class="hero">
+            <div class="container hero-content">
+                <h2>Promoting Men's Health & Wellness</h2>
+                <p>Raising awareness about cancer prevention and mental wellness for men of all ages. Your health matters.</p>
+                <a href="#" class="btn" data-page="resources">Get Help Now</a>
+            </div>
+        </section>
+
+        <section class="container">
+            <h2 class="section-title">Why Men's Health Matters</h2>
+            <div class="cards">
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1576091160558-3f9ab5fca3c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80" alt="Cancer Awareness">
+                    </div>
+                    <div class="card-content">
+                        <h3>Cancer Awareness</h3>
+                        <p>Early detection of prostate, testicular, and other cancers significantly increases survival rates. Learn about symptoms and screening.</p>
+                        <a href="#" class="btn" data-page="cancer">Learn More</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1598257006626-48b0c252470d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80" alt="Mental Wellness">
+                    </div>
+                    <div class="card-content">
+                        <h3>Mental Wellness</h3>
+                        <p>Mental health is just as important as physical health. Find resources and strategies to maintain your psychological well-being.</p>
+                        <a href="#" class="btn" data-page="mental">Learn More</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80" alt="Healthy Lifestyle">
+                    </div>
+                    <div class="card-content">
+                        <h3>Healthy Lifestyle</h3>
+                        <p>Discover how diet, exercise, and healthy habits can reduce your risk of cancer and improve mental health.</p>
+                        <a href="#" class="btn" data-page="resources">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats">
+            <div class="container">
+                <h2 class="section-title">By The Numbers</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number" id="stat1">0</div>
+                        <p>Men die from cancer each day</p>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="stat2">0</div>
+                        <p>Of men experience mental health issues</p>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="stat3">0</div>
+                        <p>Increase in survival with early detection</p>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="stat4">0</div>
+                        <p>Men don't regularly discuss health concerns</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Cancer Awareness Page -->
+    <div id="cancer" class="page">
+        <section class="container">
+            <h2 class="section-title">Men's Cancer Awareness</h2>
+            <p>Cancer is a leading cause of death among men. Understanding the risks, symptoms, and screening options can save lives.</p>
+            
+            <div class="cards">
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80" alt="Prostate Cancer">
+                    </div>
+                    <div class="card-content">
+                        <h3>Prostate Cancer</h3>
+                        <p>The most common cancer in men. Learn about risk factors, screening methods, and treatment options.</p>
+                        <button class="btn read-more">Read More</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1594826731125-3c9df6ad4dd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80" alt="Testicular Cancer">
+                    </div>
+                    <div class="card-content">
+                        <h3>Testicular Cancer</h3>
+                        <p>Most common in younger men. Early detection is crucial. Learn how to perform self-examinations.</p>
+                        <button class="btn read-more">Read More</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80" alt="Colorectal Cancer">
+                    </div>
+                    <div class="card-content">
+                        <h3>Colorectal Cancer</h3>
+                        <p>Third most common cancer in men. Screening typically begins at age 45. Know the symptoms.</p>
+                        <button class="btn read-more">Read More</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="resource-list">
+                <h3>Screening Guidelines</h3>
+                <div class="resource-item">
+                    <h4>Prostate Cancer Screening</h4>
+                    <p>Discuss with your doctor starting at age 50, or earlier if you have risk factors.</p>
+                </div>
+                <div class="resource-item">
+                    <h4>Testicular Self-Examination</h4>
+                    <p>Perform monthly self-exams to check for any lumps or changes.</p>
+                </div>
+                <div class="resource-item">
+                    <h4>Colonoscopy</h4>
+                    <p>Recommended starting at age 45 for average-risk individuals.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Mental Wellness Page -->
+    <div id="mental" class="page">
+        <section class="container">
+            <h2 class="section-title">Mental Wellness</h2>
+            <p>Mental health is an essential part of overall wellness. Unfortunately, men are often less likely to discuss or seek help for mental health concerns.</p>
+            
+            <div class="cards">
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1598940603846-a1edd0ef4584?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80" alt="Stress Management">
+                    </div>
+                    <div class="card-content">
+                        <h3>Stress Management</h3>
+                        <p>Learn healthy coping mechanisms for dealing with stress and anxiety.</p>
+                        <button class="btn read-more">Read More</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1593113630400-ea4288922497?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80" alt="Depression">
+                    </div>
+                    <div class="card-content">
+                        <h3>Depression</h3>
+                        <p>Recognize the signs of depression and learn about treatment options.</p>
+                        <button class="btn read-more">Read More</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80" alt="Work-Life Balance">
+                    </div>
+                    <div class="card-content">
+                        <h3>Work-Life Balance</h3>
+                        <p>Strategies for maintaining a healthy balance between work and personal life.</p>
+                        <button class="btn read-more">Read More</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="resource-list">
+                <h3>Crisis Resources</h3>
+                <div class="resource-item">
+                    <h4>National Suicide Prevention Lifeline</h4>
+                    <p>Call 988 for 24/7 free and confidential support</p>
+                </div>
+                <div class="resource-item">
+                    <h4>Crisis Text Line</h4>
+                    <p>Text HOME to 741741 from anywhere in the US, anytime, about any type of crisis.</p>
+                </div>
+                <div class="resource-item">
+                    <h4>Veterans Crisis Line</h4>
+                    <p>Call 988 then press 1, or text 838255 for dedicated support for veterans.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Resources Page -->
+    <div id="resources" class="page">
+        <section class="container">
+            <h2 class="section-title">Resources</h2>
+            <p>Find helpful resources, organizations, and tools to support your health journey.</p>
+            
+            <div class="resource-list">
+                <h3>National Organizations</h3>
+                <div class="resource-item">
+                    <h4>American Cancer Society</h4>
+                    <p>Resources for cancer prevention, detection, and treatment.</p>
+                    <a href="#" class="btn">Visit Website</a>
+                </div>
+                <div class="resource-item">
+                    <h4>Movember Foundation</h4>
+                    <p>Global charity focused on men's health, including prostate cancer, testicular cancer, and mental health.</p>
+                    <a href="#" class="btn">Visit Website</a>
+                </div>
+                <div class="resource-item">
+                    <h4>National Alliance on Mental Illness (NAMI)</h4>
+                    <p>Provides advocacy, education, support and public awareness for mental health.</p>
+                    <a href="#" class="btn">Visit Website</a>
+                </div>
+            </div>
+            
+            <div class="resource-list">
+                <h3>Local Support Groups</h3>
+                <div class="resource-item">
+                    <h4>Prostate Cancer Support Group</h4>
+                    <p>Meets every second Tuesday of the month at Community Hospital.</p>
+                </div>
+                <div class="resource-item">
+                    <h4>Men's Mental Health Circle</h4>
+                    <p>Weekly meetings for men to discuss mental health challenges in a supportive environment.</p>
+                </div>
+                <div class="resource-item">
+                    <h4>Cancer Survivors Network</h4>
+                    <p>Connect with other men who have experienced cancer.</p>
+                </div>
+            </div>
+            
+            <div class="resource-list">
+                <h3>Recommended Reading</h3>
+                <div class="resource-item">
+                    <h4>"Men's Health: Everything You Need to Know"</h4>
+                    <p>Comprehensive guide to men's physical and mental health.</p>
+                </div>
+                <div class="resource-item">
+                    <h4>"The Mindful Man"</h4>
+                    <p>Book on mindfulness practices specifically for men.</p>
+                </div>
+                <div class="resource-item">
+                    <h4>"Fighting Cancer Together"</h4>
+                    <p>Stories of hope and resilience from cancer survivors.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- About Me Page -->
+    <div id="about" class="page">
+        <section class="container">
+            <h2 class="section-title">About Me</h2>
+            
+            <div class="about-content">
+                <div>
+                    <h3>Ian Omara Otiato</h3>
+                    <p>I am a recent graduate from Pioneer International University with a degree in International Relations and Diplomacy, having specialized in Peace and Security.</p>
+                    
+                    <p>My journey into software engineering might seem unconventional, but I've discovered that the problem-solving skills and systems thinking required in International Relations translate remarkably well to coding. Just as diplomacy requires understanding complex systems and finding creative solutions to global challenges, software engineering involves understanding complex systems and creating elegant solutions to technical problems.</p>
+                    
+                    <div class="certification">
+                        <h4><i class="fab fa-wordpress-simple"></i> WordPress Certification</h4>
+                        <p>I have successfully completed the THIRD WordPress certification program, enhancing my skills in web development and content management systems.</p>
+                    </div>
+                    
+                    <p>My inspiration for creating this platform came from personal experience. I witnessed my grandfather's struggle with throat cancer and saw firsthand how it affected not just his physical health, but his mental wellbeing too. This experience made me realize the critical connection between physical health and mental wellness, especially for men who often hesitate to seek help or discuss their health concerns.</p>
+                    
+                    <p>This project combines my passion for creating positive change with my growing technical skills. I believe that technology can be a powerful tool for health advocacy and education, particularly in reaching communities that might not have easy access to traditional health resources.</p>
+                </div>
+                
+                <div class="about-img">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Ian Omara Otiato">
+                </div>
+            </div>
+            
+            <div class="resource-list" style="margin-top: 3rem;">
+                <h3>Education & Background</h3>
+                <div class="resource-item">
+                    <h4>Pioneer International University</h4>
+                    <p>Bachelor's Degree in International Relations and Diplomacy</p>
+                    <p>Specialization: Peace and Security Studies</p>
+                </div>
+                <div class="resource-item">
+                    <h4>Software Engineering</h4>
+                    <p>Self-taught developer with focus on web technologies and health applications</p>
+                </div>
+                <div class="resource-item">
+                    <h4>WordPress Certification</h4>
+                    <p>THIRD WordPress certification holder</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact" class="page">
+        <section class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <p>Have questions or want to get involved? Reach out to us using the form below.</p>
+            
+            <form id="contact-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <select id="subject" class="form-control" required>
+                        <option value="">Select a subject</option>
+                        <option value="general">General Inquiry</option>
+                        <option value="support">Support Request</option>
+                        <option value="volunteer">Volunteering</option>
+                        <option value="donation">Donation</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" class="form-control" required></textarea>
+                </div>
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+            
+            <div class="resource-list" style="margin-top: 3rem;">
+                <h3>Other Ways to Reach Us</h3>
+                <div class="resource-item">
+                    <h4><i class="fas fa-phone"></i> Phone</h4>
+                    <p>+254 799 507 872 (Kenya, Nairobi)</p>
+                </div>
+                <div class="resource-item">
+                    <h4><i class="fas fa-envelope"></i> Email</h4>
+                    <p>ianotiato688@gmail.com</p>
+                </div>
+                <div class="resource-item">
+                    <h4><i class="fas fa-map-marker-alt"></i> Location</h4>
+                    <p>Nairobi, Kenya</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Men's Wellness Hub</h3>
+                    <p>Dedicated to raising awareness about men's cancer and mental wellness through education, support, and resources.</p>
+                    <p>Founded by Ian Omara Otiato</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#" data-page="home">Home</a></li>
+                        <li><a href="#" data-page="cancer">Cancer Awareness</a></li>
+                        <li><a href="#" data-page="mental">Mental Wellness</a></li>
+                        <li><a href="#" data-page="resources">Resources</a></li>
+                        <li><a href="#" data-page="about">About Me</a></li>
+                        <li><a href="#" data-page="contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <p style="margin-top: 1rem;">Subscribe to our newsletter</p>
+                    <form>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Your email" style="margin-top: 0.5rem;">
+                        </div>
+                        <button type="submit" class="btn" style="margin-top: 0.5rem;">Subscribe</button>
+                    </form>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Information</h3>
+                    <p><i class="fas fa-phone"></i> +254 799 507 872</p>
+                    <p><i class="fas fa-envelope"></i> ianotiato688@gmail.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Men's Wellness Hub. Founded by Ian Omara Otiato. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // DOM Elements
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const pages = document.querySelectorAll('.page');
+        const contactForm = document.getElementById('contact-form');
+        const readMoreButtons = document.querySelectorAll('.read-more');
+        
+        // Mobile Menu Toggle
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            hamburger.innerHTML = navMenu.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Navigation
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const pageId = link.getAttribute('data-page');
+                
+                // Update active link
+                navLinks.forEach(navLink => navLink.classList.remove('active'));
+                link.classList.add('active');
+                
+                // Show the selected page
+                pages.forEach(page => {
+                    page.classList.remove('active');
+                    if (page.id === pageId) {
+                        page.classList.add('active');
+                    }
+                });
+                
+                // Close mobile menu if open
+                if (navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    hamburger.innerHTML = '<i class="fas fa-bars'></i>';
+                }
+                
+                // Scroll to top
+                window.scrollTo(0, 0);
+            });
+        });
+        
+        // Contact Form Validation
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Simple validation
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            if (name && email && subject && message) {
+                alert('Thank you for your message. We will get back to you soon!');
+                contactForm.reset();
+            } else {
+                alert('Please fill in all fields.');
+            }
+        });
+        
+        // Read More Buttons
+        readMoreButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                alert('This feature would show more detailed content in a complete implementation.');
+            });
+        });
+        
+        // Animate Stats Counter
+        function animateStats() {
+            const stat1 = document.getElementById('stat1');
+            const stat2 = document.getElementById('stat2');
+            const stat3 = document.getElementById('stat3');
+            const stat4 = document.getElementById('stat4');
+            
+            animateValue(stat1, 0, 350, 2000);
+            animateValue(stat2, 0, 31, 2000);
+            animateValue(stat3, 0, 90, 2000);
+            animateValue(stat4, 0, 40, 2000);
+        }
+        
+        function animateValue(element, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                element.innerHTML = Math.floor(progress * (end - start) + start) + (element === stat2 || element === stat3 || element === stat4 ? '%' : '');
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+        
+        // Initialize stats animation when stats section is in viewport
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
